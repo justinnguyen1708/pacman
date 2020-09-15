@@ -1,2 +1,2 @@
 # pacman
-This is repository for Pac-Man game development applying OOP. Pygame Zero framework and the Mu editor are considered to be used to develop this game.
+This is repository for Pac-Man game development applying OOP. Pygame framework and PyCharm 2019.3.3 are considered to be used to develop this game.
