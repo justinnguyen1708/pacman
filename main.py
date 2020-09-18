@@ -1,5 +1,8 @@
-from app_class import *
+from controller_class import *
+from view_class import *
 
 if __name__ == '__main__':
-    app = App()
-    app.run()
+    # view = View()
+    # view.start_draw()
+    controller = Controller()
+    controller.run()

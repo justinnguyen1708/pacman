@@ -4,12 +4,23 @@ import copy
 from settings import *
 from player_class import *
 from enemy_class import *
+from view_class import *
 
 pygame.init()
 vec = pygame.math.Vector2
 
 
-class App:
+# def draw_text(words, screen, pos, size, colour, font_name, centered=False):
+#     font = pygame.font.SysFont(font_name, size)
+#     text = font.render(words, False, colour)
+#     text_size = text.get_size()
+#     if centered:
+#         pos[0] = pos[0] - text_size[0] // 2
+#         pos[1] = pos[1] - text_size[1] // 2
+#     screen.blit(text, pos)
+
+
+class Controller:
     def __init__(self):
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         self.clock = pygame.time.Clock()
@@ -26,6 +37,7 @@ class App:
         self.player = Player(self, vec(self.p_pos))
         self.make_enemies()
 
+    # CONTROLLER
     def run(self):
         while self.running:
             if self.state == START_STATE:
@@ -47,20 +59,14 @@ class App:
             else:
                 self.running = False
             self.clock.tick(FPS)
+            return self.state
         pygame.quit()
         sys.exit()
 
     ############################ HELPER FUNCTIONS ##################################
+    # VIEW
 
-    def draw_text(self, words, screen, pos, size, colour, font_name, centered=False):
-        font = pygame.font.SysFont(font_name, size)
-        text = font.render(words, False, colour)
-        text_size = text.get_size()
-        if centered:
-            pos[0] = pos[0] - text_size[0] // 2
-            pos[1] = pos[1] - text_size[1] // 2
-        screen.blit(text, pos)
-
+    # VIEW
     def load(self):
         self.background = pygame.image.load('maze.png')
         self.background = pygame.transform.scale(self.background, (MAZE_WIDTH, MAZE_HEIGHT))
@@ -83,10 +89,12 @@ class App:
                         pygame.draw.rect(self.background, BLACK, (xidx * self.cell_width, yidx * self.cell_height,
                                                                   self.cell_width, self.cell_height))
 
+    # VIEW
     def make_enemies(self):
         for idx, pos in enumerate(self.e_pos):
             self.enemies.append(Enemy(self, vec(pos), idx))
 
+    # VIEW
     def draw_grid(self):
         for x in range(WIDTH // self.cell_width):
             pygame.draw.line(self.background, GREY, (x * self.cell_width, 0),
@@ -95,6 +103,7 @@ class App:
             pygame.draw.line(self.background, GREY, (0, x * self.cell_height),
                              (WIDTH, x * self.cell_height))
 
+    # CONTROLLER
     def reset(self):
         self.player.lives = 3
         self.player.current_score = 0
@@ -115,7 +124,7 @@ class App:
         self.state = PLAYING_STATE
 
     ########################### INTRO FUNCTIONS ####################################
-
+    # CONTROLLER
     def start_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -123,19 +132,21 @@ class App:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 self.state = PLAYING_STATE
 
+    # CONTROLLER
     def start_update(self):
         pass
 
+    # VIEW
     def start_draw(self):
         self.screen.fill(BLACK)
-        self.draw_text('PUSH SPACE BAR', self.screen, [
+        draw_text('PUSH SPACE BAR', self.screen, [
             WIDTH // 2, HEIGHT // 2 - 50], GENERAL_FONT_SIZE, RED, GENERAL_FONT, centered=True)
-        self.draw_text('1 PLAYER ONLY', self.screen, [
+        draw_text('1 PLAYER ONLY', self.screen, [
             WIDTH // 2, HEIGHT // 2 + 50], GENERAL_FONT_SIZE, WHITE, GENERAL_FONT, centered=True)
         pygame.display.update()
 
     ########################### PLAYING FUNCTIONS ##################################
-
+    # CONTROLLER
     def playing_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -150,6 +161,7 @@ class App:
                 if event.key == pygame.K_DOWN:
                     self.player.move(vec(0, 1))
 
+    # CONTROLLER
     def playing_update(self):
         if len(self.coins) == 0:
             self.state = GAME_DEFEATED_STATE
@@ -162,19 +174,23 @@ class App:
                 if enemy.grid_pos == self.player.grid_pos:
                     self.remove_life()
 
+    # VIEW
     def playing_draw(self):
         self.screen.fill(BLACK)
         self.screen.blit(self.background, (TOP_BOTTOM_BUFFER // 2, TOP_BOTTOM_BUFFER // 2))
         self.draw_coins()
         # self.draw_grid()
-        self.draw_text('CURRENT SCORE: {}'.format(self.player.current_score),
-                       self.screen, [60, 0], GENERAL_FONT_SIZE, WHITE, GENERAL_FONT)
-        self.draw_text('HIGH SCORE: 0', self.screen, [WIDTH // 2 + 60, 0], GENERAL_FONT_SIZE, WHITE, GENERAL_FONT)
+        draw_text('CURRENT SCORE: {}'.format(self.player.current_score),
+                  self.screen, [60, 0], GENERAL_FONT_SIZE, WHITE, GENERAL_FONT)
+
+        draw_text('HIGH SCORE: {}'.format(open("high_score.txt", "r").read()),
+                  self.screen, [WIDTH // 2 + 60, 0], GENERAL_FONT_SIZE, WHITE, GENERAL_FONT)
         self.player.draw()
         for enemy in self.enemies:
             enemy.draw()
         pygame.display.update()
 
+    # CONTROLLER
     def remove_life(self):
         self.player.lives -= 1
         if self.player.lives == 0:
@@ -188,6 +204,7 @@ class App:
                 enemy.pix_pos = enemy.get_pix_pos()
                 enemy.direction *= 0
 
+    # VIEW
     def draw_coins(self):
         for coin in self.coins:
             pygame.draw.circle(self.screen, (124, 123, 7),
@@ -195,26 +212,32 @@ class App:
                                 int(coin.y * self.cell_height) + self.cell_height // 2 + TOP_BOTTOM_BUFFER // 2), 5)
 
     ########################### GAME OVER FUNCTIONS ################################
-
+    # CONTROLLER
     def game_over_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
                 self.running = False
 
+    # CONTROLLER
     def game_over_update(self):
-        pass
+        high_score = open("high_score.txt", "r").read()
+        if high_score != '' and self.player.current_score > int(high_score):
+            f = open("high_score.txt", "w")
+            f.write(str(self.player.current_score))
+            f.close()
 
+    # VIEW
     def game_over_draw(self):
         self.screen.fill(BLACK)
-        self.draw_text("GAME OVER", self.screen, [WIDTH // 2, 100], FINAL_FONT_SIZE, RED, GENERAL_FONT, centered=True)
-        self.draw_text(AGAIN_TEXT, self.screen, [
+        draw_text("GAME OVER", self.screen, [WIDTH // 2, 100], FINAL_FONT_SIZE, RED, GENERAL_FONT, centered=True)
+        draw_text(AGAIN_TEXT, self.screen, [
             WIDTH // 2, HEIGHT // 2], FINAL_FONT_SIZE, WHITE, GENERAL_FONT, centered=True)
-        self.draw_text(QUIT_TEXT, self.screen, [
+        draw_text(QUIT_TEXT, self.screen, [
             WIDTH // 2, HEIGHT // 1.5], FINAL_FONT_SIZE, WHITE, GENERAL_FONT, centered=True)
         pygame.display.update()
 
     ########################### GAME DEFEATED FUNCTIONS ################################
-
+    # CONTROLLER
     def game_defeated_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
@@ -222,14 +245,20 @@ class App:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 self.reset()
 
+    # CONTROLLER
     def game_defeated_update(self):
-        pass
+        high_score = open("high_score.txt", "r").read()
+        if high_score != '' and self.player.current_score > int(high_score):
+            f = open("high_score.txt", "w")
+            f.write(str(self.player.current_score))
+            f.close()
 
+    # VIEW
     def game_defeated_draw(self):
-        self.draw_text('YOU WIN', self.screen, [
+        draw_text('YOU WIN', self.screen, [
             WIDTH // 2, HEIGHT // 2], FINAL_FONT_SIZE, RED, GENERAL_FONT, centered=True)
-        self.draw_text(AGAIN_TEXT, self.screen, [
+        draw_text(AGAIN_TEXT, self.screen, [
             WIDTH // 2, HEIGHT // 2 + 50], FINAL_FONT_SIZE, WHITE, GENERAL_FONT, centered=True)
-        self.draw_text(QUIT_TEXT, self.screen, [
+        draw_text(QUIT_TEXT, self.screen, [
             WIDTH // 2, HEIGHT // 2 + 100], FINAL_FONT_SIZE, WHITE, GENERAL_FONT, centered=True)
         pygame.display.update()
