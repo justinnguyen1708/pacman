@@ -38,7 +38,6 @@ class EventManager:
         pygame.quit()
         sys.exit()
 
-    ########## START ##########
     def start_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -49,7 +48,6 @@ class EventManager:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 self.state = PLAYING_STATE
 
-    ########## GAME OVER ##########
     def game_over_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -60,7 +58,6 @@ class EventManager:
                 elif event.key == pygame.K_SPACE:
                     self.running = True
 
-    ########## GAME DEFEATED ##########
     def game_defeated_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

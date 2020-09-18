@@ -16,8 +16,6 @@ class Controller:
         self.make_enemies()
         self.high_score = open(HIGH_SCORE, "r").read()
 
-    ############################ HELPER FUNCTIONS ##################################
-
     def load(self):
         # Opening walls file
         # Creating walls list with co-ords of walls
@@ -62,8 +60,6 @@ class Controller:
         f.write(str(self.player.current_score))
         f.close()
 
-    ########################### PLAYING FUNCTIONS ##################################
-
     def playing_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -106,8 +102,6 @@ class Controller:
                 enemy.direction *= 0
         return True
 
-    ########################### GAME OVER FUNCTIONS ################################
-
     def game_over_update(self):
         self.update_high_score()
 
@@ -115,8 +109,6 @@ class Controller:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 return PLAYING_STATE
         return GAME_OVER_STATE
-
-    ########################### GAME DEFEATED FUNCTIONS ################################
 
     def game_defeated_update(self):
         self.update_high_score()
