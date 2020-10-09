@@ -21,7 +21,7 @@ class Controller:
         self.e_pos = []
         self.player = None
         self.view = View()
-        self.high_score = open(HIGH_SCORE, "r").read()
+        self.high_score = int(open(HIGH_SCORE, "r").read())
 
     # Get coins
     def get_coins(self):
@@ -50,6 +50,10 @@ class Controller:
     # Get high score
     def get_high_score(self):
         return self.high_score
+
+    # Set high score
+    def set_high_score(self, high_score):
+        self.high_score = high_score
 
     def run(self):
         self.load()
@@ -83,6 +87,7 @@ class Controller:
     ############################ HELPER FUNCTIONS ##################################
     def update_high_score(self):
         if self.player.current_score > self.high_score:
+            self.set_high_score(self.player.current_score)
             f = open(HIGH_SCORE, "w")
             f.write(str(self.player.current_score))
             f.close()

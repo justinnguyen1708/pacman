@@ -44,7 +44,7 @@ class View:
         self.draw_text('CURRENT SCORE: {}'.format(player.current_score),
                        main_screen, [60, 0], GENERAL_FONT_SIZE, WHITE, GENERAL_FONT)
         self.draw_text('HIGH SCORE: {}'.format(high_score),
-                       [WIDTH // 2 + 60, 0], GENERAL_FONT_SIZE, WHITE, GENERAL_FONT)
+                       main_screen, [WIDTH // 2 + 60, 0], GENERAL_FONT_SIZE, WHITE, GENERAL_FONT)
         player.draw(main_screen)
         for enemy in enemies:
             enemy.draw(main_screen)

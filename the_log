@@ -1,0 +1,107 @@
+commit bd0abb2271778fc1967ee5b4b087e6f472b55ea7
+Author: Justin Nguyen <tin.nc1708@gmail.com>
+Date:   Fri Oct 9 14:11:47 2020 +1000
+
+    update controller
+
+commit f56eb85f8773404923e2164549d628a254bc01cc
+Author: Justin Nguyen <tin.nc1708@gmail.com>
+Date:   Fri Oct 9 14:10:42 2020 +1000
+
+    add comments in controller and eventmanager
+
+commit d0714511ca49e1d798e5748464a7547c5f906740
+Author: Justin Nguyen <tin.nc1708@gmail.com>
+Date:   Fri Sep 18 20:03:41 2020 +1000
+
+    add comments in controller and eventmanager
+
+commit b0098443fdce0c55f7bbdd845a9ae721952feb16
+Author: Justin Nguyen <tin.nc1708@gmail.com>
+Date:   Fri Sep 18 13:32:48 2020 +1000
+
+    add eventmanager.py
+
+commit 1f9bea4f9c6d004d87a6086abba6c332233793af
+Author: Justin Nguyen <tin.nc1708@gmail.com>
+Date:   Fri Sep 18 10:48:00 2020 +1000
+
+    update mvc
+
+commit 53efb2857d60931cc6746eea60ae9fc8e99f9601
+Author: Justin Nguyen <tin.nc1708@gmail.com>
+Date:   Wed Sep 16 10:18:56 2020 +1000
+
+    Milestone 2 init
+
+commit f5a75b532cb7d08b76ae03b4f84af4bb953a2cc9
+Author: Justin Nguyen <tin.nc1708@gmail.com>
+Date:   Wed Sep 16 10:15:03 2020 +1000
+
+    nuke and start again
+
+commit 60400afbc5611a1738eced63749b170619e5476a
+Merge: c2dfd93 552ec29
+Author: Justin Nguyen <tin.nc1708@gmail.com>
+Date:   Wed Sep 16 09:54:33 2020 +1000
+
+    Merge pull request #2 from justinnguyen1708/milestone01
+    
+    Merge pull request #1 from justinnguyen1708/master
+
+commit 552ec299b5850aa00e83d465514aa406f9c76e32
+Merge: 387bf3b c2dfd93
+Author: Justin Nguyen <tin.nc1708@gmail.com>
+Date:   Wed Sep 16 09:53:59 2020 +1000
+
+    Merge pull request #1 from justinnguyen1708/master
+    
+    update readme
+
+commit c2dfd93c8a52d375ebf2818194cfabb8bb2a0796
+Author: Justin Nguyen <tin.nc1708@gmail.com>
+Date:   Wed Sep 16 09:50:32 2020 +1000
+
+    Update README.md
+
+commit cccfee48cabf6cff4a627319b99533405408a1f6
+Author: Justin Nguyen <tin.nc1708@gmail.com>
+Date:   Fri Aug 7 17:42:33 2020 +1000
+
+    part 1
+    
+    Build world
+    Add movements for Pac-Man
+    Add Pac-Man and ghosts
+
+commit 387bf3b715be5311ea79dae8a85548eed05b470b
+Author: Justin Nguyen <tin.nc1708@gmail.com>
+Date:   Fri Aug 7 15:44:50 2020 +1000
+
+    Files and folders initialization
+
+commit be80a53df98bf3b3456a49bd798daafa0dfdec99
+Author: Justin Nguyen <tin.nc1708@gmail.com>
+Date:   Fri Aug 7 15:37:45 2020 +1000
+
+    Update README.md
+    
+    use new framework
+
+commit dab4f191e6e50f03ea29025b5568e887507f3b28
+Author: Justin Nguyen <tin.nc1708@gmail.com>
+Date:   Fri Aug 7 15:36:02 2020 +1000
+
+    Delete pacman.py
+
+commit ed398daef5f5bce33e28e35aa885b28ae247327a
+Author: Justin Nguyen <tin.nc1708@gmail.com>
+Date:   Thu Aug 6 20:15:57 2020 +1000
+
+    Create pacman.py
+
+commit 0d986cd6a284f84ae31c4dd55f842f4c53c774aa
+Author: Justin Nguyen <tin.nc1708@gmail.com>
+Date:   Thu Aug 6 20:01:26 2020 +1000
+
+    Initial commit
