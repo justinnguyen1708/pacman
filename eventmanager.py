@@ -23,7 +23,7 @@ class EventManager:
             elif self.state == PLAYING_STATE:
                 self.running = controller.playing_events()
                 self.state = controller.playing_update()
-                view.playing_draw()
+                view.playing_draw(controller.get_coins())
             elif self.state == GAME_OVER_STATE:
                 self.running = controller.game_over_events()
                 self.state = controller.game_over_update()

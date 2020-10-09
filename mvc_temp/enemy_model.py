@@ -1,6 +1,6 @@
 import pygame
 import random
-from settings import *
+from mvc_temp.settings import *
 
 vec = pygame.math.Vector2
 
@@ -102,8 +102,8 @@ class Enemy:
             else:
                 neighbours = [[0, -1], [1, 0], [0, 1], [-1, 0]]
                 for neighbour in neighbours:
-                    if neighbour[0]+current[0] >= 0 and neighbour[0] + current[0] < len(grid[0]):
-                        if neighbour[1]+current[1] >= 0 and neighbour[1] + current[1] < len(grid):
+                    if neighbour[0] + current[0] >= 0 and neighbour[0] + current[0] < len(grid[0]):
+                        if neighbour[1] + current[1] >= 0 and neighbour[1] + current[1] < len(grid):
                             next_cell = [neighbour[0] + current[0], neighbour[1] + current[1]]
                             if next_cell not in visited:
                                 if grid[next_cell[1]][next_cell[0]] != 1:
@@ -156,4 +156,3 @@ class Enemy:
             return "random"
         else:
             return "scared"
-

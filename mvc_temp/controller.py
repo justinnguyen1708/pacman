@@ -1,8 +1,8 @@
 import sys
 
-from enemy_model import *
-from player_model import *
-from view import *
+from mvc_temp.enemy_model import *
+from mvc_temp.player_model import *
+from mvc_temp.view import *
 
 pygame.init()
 vec = pygame.math.Vector2

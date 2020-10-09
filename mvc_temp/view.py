@@ -1,5 +1,5 @@
 import pygame
-from settings import *
+from mvc_temp.settings import *
 
 
 class View:
