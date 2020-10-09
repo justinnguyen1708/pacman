@@ -1,4 +1,4 @@
-from mvc_temp.controller import *
+from controller import *
 
 if __name__ == '__main__':
     controller = Controller()
